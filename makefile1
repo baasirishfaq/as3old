@@ -1,0 +1,36 @@
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -std=c99 -Iinclude
+
+# Source files (all .c files in the src directory)
+SRCS := $(wildcard src/*.c)
+
+# Object files (generated from the source files)
+OBJS := $(SRCS:.c=.o)
+
+# Executable path (now kept in the bin folder)
+TARGET := bin/musicalLL
+
+# Default target
+all: $(TARGET)
+
+# Link object files to create the executable in bin/
+$(TARGET): $(OBJS)
+	@mkdir -p bin  # Ensure bin directory exists
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
+
+# Compile source files into object files
+src/%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up build files (including bin/)
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+# Debugging rule to print variables
+debug:
+	@echo "SRCS: $(SRCS)"
+	@echo "OBJS: $(OBJS)"
+
+# Phony targets
+.PHONY: all clean debug

@@ -1,3 +1,6 @@
+#ifndef GIVEN_A3_H
+#define GIVEN_A3_H
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -78,3 +81,4 @@ int deleteASongGivenId(A3Song **headLL, int givenSongId);
 
 // Helpers
 void printPlayList(A3Song *headLL);
+#endif

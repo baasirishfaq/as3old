@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -std=c99 -w -Iinclude
+CFLAGS = -Wall -std=c99 -w
 
 bin/test: TestCode.o unity.o TestCodeRunner.o harness/unity.h harness/CodeUnderTest.h
 	$(CC) $(CFLAGS) -o bin/test TestCode.o unity.o TestCodeRunner.o -lm
@@ -16,4 +16,5 @@ TestCodeRunner.o: harness/TestCodeRunner.c harness/unity.h
 clean:
 	rm -f *.o bin/test
 
-.PHONY: clean
+test: bin/test
+	./bin/test
